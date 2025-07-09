@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -41,6 +42,9 @@ class AuthController extends Controller
       echo $request->input('text_username');
       
       echo $request->input('text_password');
+
+
+      
 
     }
 
