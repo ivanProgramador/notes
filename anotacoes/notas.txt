@@ -1,0 +1,16 @@
+Quando criamos um formulario e apontamos ele para uma rota o laraverl cria 
+2 campos que podem ser vistos do navegador usando o f12 
+esses campos / isso e um sistema de segurança que identifica quem esta fazendo a requisição.  
+
+
+ <input type="hidden" name="_token" value="kF1OXVGZL74QZNvQ1XTikAqFxRdkhEACPuojBmWM" autocomplete="off">
+
+essa funcção serve como um log pra ver o conteudo da requisição 
+ dd($request);
+
+
+o cidog abaixo pega os valores do inputs 
+
+ echo $request->input('text_username');
+      
+ echo $request->input('text_password');

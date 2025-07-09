@@ -1,0 +1,29 @@
+Eu criei um view dentro de layouts para que ela seja o template principal para todas as outras,
+no caso nessa view prinical ficara importado o bootstrap, o css e o js dele.
+o aruivo se chama:  
+
+main_layout.blade.php 
+
+dentro do body dele eu coloquei a diretiva 
+
+@yeld('conteudo');
+
+essa diretiva pega todos os dados da view onde ela está 
+assim ela pode ser importada por outras views agora para 
+importar ela  eu preciso usar a diretiva: 
+
+1 - importa como se a view fosse uma extenção dentro do parametro eu informo 'nome da pasta  ' . 'nome da view'
+    assim eu digo que essa view e a extenção de outra fazndo ela herdar tudo,o layout e as bibliotecas 
+
+@extends('layouts.main_layout')
+
+2 - partir de onde a configuração começa 
+@section('content')
+
+
+todo o conteudo da view tem que ficar aqui 
+
+
+
+3 - depois daqui a importação acaba 
+@endsection

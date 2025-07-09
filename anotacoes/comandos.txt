@@ -1,0 +1,15 @@
+Criando um dos controllers principais 
+
+    php artisan make:controller Main
+
+Criando uma view pelo artisan 
+
+    php artisan make:view main
+
+Criando a pasta layout  e colocando uma view dentro dela 
+     php artisan make:view layouts/main_layout
+
+Criando o controller de autenticação 
+     
+     php artisan make:controller Auth 
+
