@@ -51,6 +51,31 @@
                     <div class="text-center text-secondary mt-3">
                         <small>&copy; <?= date('Y') ?> Notes</small>
                     </div>
+
+                    {{--
+                        A variavel erros possui o metdodo any que verifica se ela tem algum valor 
+                        ou sseja ele verifica se ela tem algum erro 
+                    ---}}
+
+                    @if($errors->any())
+                         
+                       <div class="alert alert-danger mt-3">
+
+                            <ul class="m-0">
+                                {{--
+                                    se tiver seá feito um foreache que vai fazer um loop buscando or esses erros 
+                                    e para cada um que ele achar ele vai gerar uma variavel error com uma valor difrerente 
+                                    para cada um e depois vai criar um item de lista mostando cada um deles.   
+                                --}}
+                                
+                                 @foreach ($errors->all() as $error)
+                                     <li>{{ $error }}</li>
+                                 @endforeach
+                            </ul>
+                       </div>
+                    @endif
+
+
                 </div>
             </div>
         </div>
