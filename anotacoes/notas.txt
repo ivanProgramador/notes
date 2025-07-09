@@ -64,14 +64,7 @@ minhas regras de validação
       );
 
  ---------------------------------------------------------------------
-      //testando a conexão com a base de dados
-      
-      try{
-
-       DB::connection()->getPdo();
-       echo'conectado';
-
-
-       }catch(\PDOException $e){
-         echo $e->getMessage();
-      }
+Quando o laravel e coinectado na abase de dados ele sempre vai da rum erro
+porque ele busscarr pela tabela sessions e elea ainda não exisste porque 
+nenhuma migração foi feita ainda, então um erro asim que coneta e roda o projeto
+e for sobre sssessions é normal, ele para de aocntecer quandio roda a migration     

@@ -1,0 +1,44 @@
+ MIGRATION
+ 
+ Uma migration é um conjunto de classes reponsaveiss por abstrair 
+ a estrutura de uma tabela, e manipular essass tabelas atraves dos
+ seus métodos.
+
+Se trata de uma estratégia chamada ORM  (Object-Relational Mapping) 
+onde se trata uma entidade da base de dados como um objeto de classe,
+para fazer op mapeamento dele.
+
+No caso do laravel eu vou precissar criar uma migrations para cada entidade 
+do meu banco de dados.
+
+php artisan make:migration create_users_table
+php artisan make:migration create_notes_table
+
+Vão aparecer dois arquivos na pasta database/migrations um para cada entidade 
+
+METODDO UP 
+  
+  Chama a funcão a classe Schemas e ussa o metodo create 
+  que recebe como parametro o nome da tabela e uma função anonima
+  essa funcção anonima recebe uma variavel table que é um objeto da clase 
+  Blueprint que sera reponsável por gerar o campos, aqui por padrão so tem 2 
+  mas eu posso criar outros. 
+
+
+
+
+ public function up(): void
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+        });
+    }
+
+Criando campos 
+
+
+
+
+
+

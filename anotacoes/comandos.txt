@@ -11,5 +11,8 @@ Criando a pasta layout  e colocando uma view dentro dela
 
 Criando o controller de autenticação 
      
-     php artisan make:controller Auth 
+     php artisan make:controller Auth
+
+Criando uma migration
+    php artisan make:migration create_users_table
 
