@@ -20,15 +20,19 @@
                                 <div class="mb-3">
                                     <label for="text_username" class="form-label">Username</label>
                                     <input type="email" class="form-control bg-dark text-info" name="text_username" value="{{ old('text_username') }}" required>
-                                    {{-- show error --}}
-                                    @error('text_username')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
+                                     @error('text_username')
+                                       <div class="text-danger">{{ $message }}</div>
+                                     @enderror
+                                      
+
+                                   
                                 </div>
                                 <div class="mb-3">
                                     <label for="text_password" class="form-label">Password</label>
+                                                                                                                               {{-- A função old serve para que o campo mantenha o valor digitado mesmo que o usuario 
+                                                                                                                               cometa um erro de validação  --}}
                                     <input type="password" class="form-control bg-dark text-info" name="text_password" value="{{ old('text_password') }}" required>
-                                    {{-- show error --}}
+                                   
                                     @error('text_password')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -52,28 +56,7 @@
                         <small>&copy; <?= date('Y') ?> Notes</small>
                     </div>
 
-                    {{--
-                        A variavel erros possui o metdodo any que verifica se ela tem algum valor 
-                        ou sseja ele verifica se ela tem algum erro 
-                    ---}}
-
-                    @if($errors->any())
-                         
-                       <div class="alert alert-danger mt-3">
-
-                            <ul class="m-0">
-                                {{--
-                                    se tiver seá feito um foreache que vai fazer um loop buscando or esses erros 
-                                    e para cada um que ele achar ele vai gerar uma variavel error com uma valor difrerente 
-                                    para cada um e depois vai criar um item de lista mostando cada um deles.   
-                                --}}
-                                
-                                 @foreach ($errors->all() as $error)
-                                     <li>{{ $error }}</li>
-                                 @endforeach
-                            </ul>
-                       </div>
-                    @endif
+                    
 
 
                 </div>
