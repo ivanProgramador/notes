@@ -38,6 +38,37 @@ class AuthController extends Controller
         
       );
 
+      // na primeira fase eu verificou se o usuario existe
+      
+      $username = $request->input('txt_username');
+      $username = $request->input('txt_password');
+      
+      // aqui eu uso um metodo estatico da classe  User que repesenta o meu model 
+      // o metodo where recebe 2 parametros e faz a comparação 
+      //entre o campo 'username' e o valor da variavel que veio do imput $username   
+      // aveirficação aqui pass por 2 fases 
+      //primeiro eu comparo se o usuario informado existe e depois eu verifico se o camo deleted_at
+      //tem algum valor, se tiver eu não posso deixar passar   
+      // por ultimo eu vaiso que eu qero o primiero valor 
+
+      $user = User::where('username',$username)
+                    ->where('deleted_at',null) 
+                    ->first(); 
+
+      //se nenhum usuario for encontrado o usar sera vazio então eu tenho que 
+      //volta apra tela de lohgin e explicxar oque houve               
+      if(!$user){
+          //aqui eu usao um conjunto de funções para fazer isso 
+          
+          return redirect()->back()->withInput()->with('loginError',' senha ou usuario invalido !');
+      }
+
+      
+
+
+
+
+
     
 
 
