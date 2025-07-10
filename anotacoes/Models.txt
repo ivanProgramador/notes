@@ -1,0 +1,9 @@
+Um model é uma classe que representa uma tabela da base de dados.
+como uma abstração de uma entidade do banco, esse models é responsavel  
+pelo metodos de mainpulação dos rregistros dentro da tabela no caso seria
+o grupo de comandos CRUD.
+
+Um model deve sempre ter o nome no singular, criando um model.
+
+php artisan make:model User
+

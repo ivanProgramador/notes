@@ -25,4 +25,10 @@ apagando a tabela
 
 criando usuarios em massa para teste 
     php artisan db:seed UsersTableSeeder  
+    
+criando um model 
+    php artisan make:model User
 
+php artisan session:table
+
+php artisan migrate

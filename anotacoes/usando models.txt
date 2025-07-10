@@ -1,0 +1,11 @@
+//pegando todos os usuarios da base de dados e rretoanddo como array 
+      
+      // $users = User::all()->toArray();
+
+      //pegando todos os usuarios da base de dados e retornando como array de objetos 
+      $userModel = new User();
+      $users = $userModel->all()->toArray();
+      
+      echo'<pre>';
+      print_r($users);
+      echo'</p>';
