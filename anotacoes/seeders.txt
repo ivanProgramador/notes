@@ -1,0 +1,7 @@
+Seeders são registros de teste para bases de dados 
+baseados nas tabelas , por ecemplo se etenho um grupo de usuarios 
+e não quero fazer o insert direto na base de dados porque 
+são muitos o laravel faz isso usando um mecanica de seeder  
+comndo par gerar uma seeder 
+
+php artisan make:seeder UsersTableSeeder

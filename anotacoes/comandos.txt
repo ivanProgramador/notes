@@ -16,3 +16,13 @@ Criando o controller de autenticação
 Criando uma migration
     php artisan make:migration create_users_table
 
+Criando as tabelas na base de dados      
+
+    php artisan migrate
+
+apagando a tabela 
+    php artisan migrate:rollback 
+
+criando usuarios em massa para teste 
+    php artisan db:seed UsersTableSeeder  
+

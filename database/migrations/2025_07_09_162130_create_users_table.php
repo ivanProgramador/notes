@@ -12,13 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
+            $table->string('username',50)->nullable();
+            $table->string('password',200)->nullable();
+            $table->dateTime('last_login')->nullable();
             $table->timestamps();
+            $table->softDeletes(); //quando o daddo é deletado do sistema mas não de forma fisica
+
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Essa função ddesfaz a criação da tabela.
      */
     public function down(): void
     {
