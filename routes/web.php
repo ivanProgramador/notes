@@ -31,6 +31,12 @@ Route::middleware([CheckIsLogged::class])->group(function(){
             //rota da home page 
             Route::get('/',[MainController::class,'index'])->name('home');
 
+            //rota de formulario de edição
+            Route::get('/editNote/{id}',[MainController::class,'edit'])->name('edit');
+
+             //rota de apagar a nota 
+            Route::get('/deleteNote/{id}',[MainController::class,'deleteNote'])->name('deleteNote');
+            
             //rota da nova nota
             Route::get('/newNote',[MainController::class,'newNote'])->name('new');
 

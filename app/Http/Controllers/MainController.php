@@ -15,6 +15,14 @@ class MainController extends Controller
       return view('home',['notes' => $notes]);
    }
 
+   public function editNote($id){
+       
+   }
+
+    public function deleteNote($id){
+       
+   }
+
    public function newNote(){
        echo'criando uma nova nota';
    }
