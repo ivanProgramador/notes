@@ -77,7 +77,7 @@ class AuthController extends Controller
       );
       
 
-      echo'Loign com susucesso !';
+      return redirect()->to('/');
 
     }
 

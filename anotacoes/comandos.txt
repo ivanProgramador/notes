@@ -37,3 +37,6 @@ criando tabela de sessão
 criando middleware 
   php artisan make:middleware  CheckIsLogged
 
+criando o model Note 
+  php artisan make:model Note
+

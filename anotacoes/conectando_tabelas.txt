@@ -1,0 +1,53 @@
+O Eloquent permire a ccriação de relacionamento entre tabelas no caso desse projeto
+um usuario pode ter varias notas 
+seria um caso de one to many.
+para fazer isso eu tenho que ir nos models e estabelecer essa relação 
+
+Model User 
+
+----------------------------------------------------------
+class User extends Model
+{   
+
+    //informando ao model usuario que ela tera muitas notas 
+    public function notes(){
+         return $this->hasMany(Note::class);
+    }
+
+    
+}
+--------------------------------------------------------------
+
+Model note 
+-------------------------------------------------------------
+class Note extends Model
+{
+
+    //informando a nota que la pertence a um usuario
+    public function user(){
+
+          return $this->belongTo(User::class);
+    }
+}
+------------------------------------------------------
+
+como retronar um usuario junto com as notas que pertencem a ele 
+
+public function index(){
+      // carregando as notas do usuario 
+      $id = session('user.id');
+      $user = User::find($id)->toArray();
+      $notes = User::find($id)->notes()->get()->toArray();
+
+      //abaixo a tela vai mostrar dois arrrays 
+      // 1 com os dados  do usuario 
+      // 2 com as notas que pertencem a ele 
+
+      echo'<pre>';
+      print_r($user);
+      print_r($notes);
+      
+      die();
+      return view('home');
+   }
+  

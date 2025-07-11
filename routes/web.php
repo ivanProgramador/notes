@@ -29,13 +29,13 @@ Route::middleware([CheckIsNotLogged::class])->group(function(){
 Route::middleware([CheckIsLogged::class])->group(function(){
 
             //rota da home page 
-            Route::get('/',[MainController::class,'index']);
+            Route::get('/',[MainController::class,'index'])->name('home');
 
             //rota da nova nota
-            Route::get('/newNote',[MainController::class,'newNote']);
+            Route::get('/newNote',[MainController::class,'newNote'])->name('new');
 
             //logout
-            Route::get('/logout',[AuthController::class,'logout']);
+            Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 });
 
