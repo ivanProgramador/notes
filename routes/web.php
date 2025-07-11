@@ -1,13 +1,43 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Main;
+use App\Http\Controllers\MainController;
+use App\Http\Middleware\CheckIsLogged;
+use App\Http\Middleware\CheckIsNotLogged;
 use Illuminate\Support\Facades\Route;
 
-//Rota de autenticação 
-Route::get('/login',[AuthController::class,'login']);
 
-//essa rota vai receber os dados quando o usuariio acionar o submit 
-Route::post('/loginSubmit',[AuthController::class,'loginSubmit']);
+//essas rotas são para usuarios que não tem cessão 
 
-Route::get('/logout',[AuthController::class,'logout']);
+Route::middleware([CheckIsNotLogged::class])->group(function(){
+
+    //Rota de autenticação 
+    Route::get('/login',[AuthController::class,'login']);
+
+   //essa rota vai receber os dados quando o usuario acionar o submit 
+   Route::post('/loginSubmit',[AuthController::class,'loginSubmit']);
+
+});
+
+
+
+//Aqui eu crio uma rota do tipo middleware, para que a função de middleware
+//que eu criei faça a checagem do login/ proteção das rotas eu tenho que agrupa-las 
+// detro dela então todas vez quen usuario tentar entrar em qualquer dessas rotas do grupo
+//vai ser testado se exsite uma sessão que permita esse acesso  
+
+Route::middleware([CheckIsLogged::class])->group(function(){
+
+            //rota da home page 
+            Route::get('/',[MainController::class,'index']);
+
+            //rota da nova nota
+            Route::get('/newNote',[MainController::class,'newNote']);
+
+            //logout
+            Route::get('/logout',[AuthController::class,'logout']);
+
+});
+
+
+

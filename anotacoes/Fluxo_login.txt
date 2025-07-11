@@ -1,0 +1,18 @@
+
+FLUXO LOGIN 
+ 
+ Dentro da aplicação eu tenho 10 páginas porém essas paginas so devem ser acessadas 
+ por um usuário logado, então antes de liberar essas paginas o sistema vai perguntar
+ esse usuário está logado ? 
+
+ se ele não estiver um formulario de login e senha deve ser apresentando para que ele 
+ faça o login, mas eu não posso fazer com que ele tenha de se autenticar 10 vezes, eu 
+ tenho 10 paginas cada uma com uma rota.Pra resolver isso eu tenho que usar.
+
+MIDWARES
+ São funções que ficam entre a rota e a requisição com a intenção de testar se quem está 
+ solicitando o acesso realmente tem permissão para seguir na rota. Criando um middleware.
+
+ php artisan make:middleware  CheckIsLogged      
+
+

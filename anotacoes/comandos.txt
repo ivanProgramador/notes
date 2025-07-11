@@ -29,6 +29,11 @@ criando usuarios em massa para teste
 criando um model 
     php artisan make:model User
 
-php artisan session:table
 
-php artisan migrate
+criando tabela de sessão 
+ php artisan session:table
+ php artisan migrate
+
+criando middleware 
+  php artisan make:middleware  CheckIsLogged
+

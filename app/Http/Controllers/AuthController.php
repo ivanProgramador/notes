@@ -60,17 +60,39 @@ class AuthController extends Controller
                 with('loginError', 'Login ou senha invalidos');
       }
 
+      //atualizando a hora do login
+      
+      $user->last_login = date('Y-m-d H:i:s');
+      $user->save();
+      
+      //colocando os daddos do usuario logado na sessão 
+
+      session([ 
+       'user' => [
+                  'id'=> $user->id,
+                  'username' => $user-> username,
+
+                ]
+        ]
+      );
       
 
-
-
-
-      echo'<pre>';
-      print_r($user);
+      echo'Loign com susucesso !';
 
     }
 
     public function logout(){
-          echo 'Logout';
+          
+        //fazenddo o log out da aplicação
+        //pra fazer isso basta limpar a sessão
+        
+        session()->forget('user');
+       
+        //voltando para o formulario
+         
+        return redirect()->to('http://localhost/notes/public/login');
+        
+        
+
     }
 }
