@@ -1,0 +1,174 @@
+Quando criamos um formulario e apontamos ele para uma rota o laraverl cria 
+2 campos que podem ser vistos do navegador usando o f12 
+esses campos / isso e um sistema de segurança que identifica quem esta fazendo a requisição.  
+
+
+ <input type="hidden" name="_token" value="kF1OXVGZL74QZNvQ1XTikAqFxRdkhEACPuojBmWM" autocomplete="off">
+
+essa funcção serve como um log pra ver o conteudo da requisição 
+ dd($request);
+
+
+o cidog abaixo pega os valores do inputs 
+
+ echo $request->input('text_username');
+      
+ echo $request->input('text_password');
+
+
+ loop de erros 
+
+ {{--
+                        A variavel erros possui o metdodo any que verifica se ela tem algum valor 
+                        ou sseja ele verifica se ela tem algum erro 
+                    ---}}
+
+                    @if($errors->any())
+                         
+                       <div class="alert alert-danger mt-3">
+
+                            <ul class="m-0">
+                                {{--
+                                    se tiver seá feito um foreache que vai fazer um loop buscando or esses erros 
+                                    e para cada um que ele achar ele vai gerar uma variavel error com uma valor difrerente 
+                                    para cada um e depois vai criar um item de lista mostando cada um deles.   
+                                --}}
+                                
+                                 @foreach ($errors->all() as $error)
+                                     <li>{{ $error }}</li>
+                                 @endforeach
+                            </ul>
+                       </div>
+                    @endif
+
+
+----------------------------------------------------------------------------------------------
+minhas regras de validação
+
+ $request -> validate(
+
+        //regras 
+        [
+          'text_username' => 'required|email',
+          'text_password' => 'required|min:6|max:16'
+        ],
+        //avisos de erro 
+        [
+          'text_username.required'=>'O nome do usuário é obrigatório',
+          'text_username.email'=>'o nome de usuário deve ser um email valido',
+          'text_password.required'=>'A senha é obrigatória',
+          'text_password.min'=>'A senha deve ter pelo menos :min caracteres',
+          'text_password.max'=>'A senha deve ter pelo menos :max caracteres'
+        ]
+        
+      );
+
+ ---------------------------------------------------------------------
+Quando o laravel e coinectado na abase de dados ele sempre vai da rum erro
+porque ele busscarr pela tabela sessions e elea ainda não exisste porque 
+nenhuma migração foi feita ainda, então um erro asim que coneta e roda o projeto
+e for sobre sssessions é normal, ele para de aocntecer quandio roda a migration  
+
+--------------------------------------------------------------------------------
+  public function loginSubmit(Request $request){
+     
+      //validando o formulario
+      //a validação tona os dois campos obrigatorios 
+      //se um deles vire vazio o validade manda um aviso 
+      //pra denrtro da variavel $errors 
+      // que sera devolvida para o aruivo do formulario     
+      
+      $request -> validate(
+
+        //regras 
+        [
+          'text_username' => 'required|email',
+          'text_password' => 'required|min:6|max:16'
+          
+        ],
+        //avisos de erro 
+        [
+          'text_username.required'=>'O nome do usuário é obrigatório',
+          'text_username.email'=>'o nome de usuário deve ser um email valido',
+          'text_password.required'=>'A senha é obrigatória',
+          'text_password.min'=>'A senha deve ter pelo menos :min caracteres',
+          'text_password.max'=>'A senha deve ter pelo menos :max caracteres'
+        ]
+        
+      );
+
+      // na primeira fase eu verificou se o usuario existe
+      
+      $username = $request->input('txt_username');
+      $username = $request->input('txt_password');
+      
+      // aqui eu uso um metodo estatico da classe  User que repesenta o meu model 
+      // o metodo where recebe 2 parametros e faz a comparação 
+      //entre o campo 'username' e o valor da variavel que veio do imput $username   
+      // aveirficação aqui pass por 2 fases 
+      //primeiro eu comparo se o usuario informado existe e depois eu verifico se o camo deleted_at
+      //tem algum valor, se tiver eu não posso deixar passar   
+      // por ultimo eu vaiso que eu qero o primiero valor 
+
+      $user = User::where('username',$username)
+                    ->where('deleted_at',null) 
+                    ->first(); 
+
+      //se nenhum usuario for encontrado o usar sera vazio então eu tenho que 
+      //volta apra tela de lohgin e explicxar oque houve   
+
+      if(!$user){
+
+           // aqui eu uso um conjunto de funções para fazer isso
+           // redirect vai rdirecionar o usuario pra alguma pagina 
+           // a back diz que e pra trás e  withInput()  diz que vai manter os dados digitados no input
+           // e with explica oque houve o pártametro 1 diz que é um erro no login eo segundo parametro 
+           // explica o erro   
+
+                   
+          
+          return redirect()->
+                 back()->
+                 withInput()->
+                 with('loginError',' senha ou usuario invalido !');
+
+      }
+
+      echo '<pre>';
+      echo  print_r($user);
+
+      
+--------------------------------------------------------------------------
+
+
+$users = User::where('username',$username)
+                    ->where('deleted_at',null) 
+                    ->first(); 
+ 
+
+      if(!$users){
+
+          return redirect()->
+                 back()->
+                 withInput()->
+                 with('loginError',' senha ou usuario invalido !');
+
+      }
+
+      $userModel = new User();
+      $users = $userModel->all()->toArray();
+      echo'<pre>';
+      print_r($users);
+
+
+
+
+    
+
+
+
+
+
+      
+
+    }
