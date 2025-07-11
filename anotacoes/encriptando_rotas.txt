@@ -1,0 +1,27 @@
+Nos mecanismos de edição ou exclusão é precisao passar o id do item que será excluido 
+entãoi esse ide precisa existir na url, mas não pode paracere na url exatamente o id 
+porque um usuario avançado vai entender a informação e tentar manipular o item pela query string 
+então o is não pode aparecer na url com o valor original então vou usar a função de encriptação 
+baseada no meu app_key 
+
+Rota sem criptografia(errado)
+
+  http://localhost/notes/public/edit/1
+
+Rota com criptografia(correto)
+   
+  http://localhost/notes/public/edit/dhdjhqwdiowejhdejijqedwjowojxjwodfesdfhjsifdhsishfsfsddsdjsidss
+
+O laravel tem uma classe chamada Crypt que tem o metodo encript que recebe como parametro o dado 
+a ser encriptado na rota abaixo eu estou fando isso com o id da minha nota mas isso pode ser feito
+com qualquer outro dado que precise de proteção. 
+
+href="/edit/{{ Crypt::encrypt($note['id']) }}"
+
+<div class="col text-end">
+     <a href="/edit/{{ Crypt::encrypt($note['id']) }}" class="btn btn-outline-secondary btn-sm mx-1"><i class="fa-regular fa-pen-to-square"></i></a>
+     <a href="/delete/{{ Crypt::encrypt($note['id']) }}" class="btn btn-outline-danger btn-sm mx-1"><i class="fa-regular fa-trash-can"></i></a>
+</div>
+
+o valor sempre muda toda vez que é usado pra evitar uma copia 
+  
