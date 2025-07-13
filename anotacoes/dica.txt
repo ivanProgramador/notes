@@ -1,2 +1,34 @@
 sempre que possivel tente mostrar ao clen6te a ultima data de alteração de um registro
-isso melhora a experiencia dele  
+isso melhora a experiencia dele.
+
+fazendo soft delete 
+-------------------------------------------------------------------------------
+
+public function deleteConfirm($id){
+
+      //checando o id 
+       $id = Operations::decryptId($id);
+
+      // carrregando a nota 
+        $note = Note::find($id);
+
+      //deletando de forma fisica (hard delete)
+
+      //$note->delete();
+
+      //quando eu faço um soft delete eu não pagao de forma fisica 
+      //eu so faço a atribuição da data hora no campo deleted_at
+      //como o sistema so traz as notas que tem esse campo nulo 
+      //ela não vai apareder para demais operações 
+      //mas caso eu presi recuperar depois para fazer um historico ou coisa parecida
+      //o registro ainda vai estar na base 
+      //soft delete 
+      
+      $note->deleted_at = date('y:m:d H:i:s');
+      $note->save();
+
+
+      //redirecionando
+       return redirect()->route('home'); 
+
+    }

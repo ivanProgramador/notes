@@ -9,14 +9,13 @@ use Illuminate\Support\Facades\Route;
 
 //essas rotas são para usuarios que não tem cessão 
 
-Route::middleware([CheckIsNotLogged::class])->group(function(){
+Route::middleware([CheckIsNotLogged::class])->group(function () {
 
     //Rota de autenticação 
-    Route::get('/login',[AuthController::class,'login']);
+    Route::get('/login', [AuthController::class, 'login']);
 
-   //essa rota vai receber os dados quando o usuario acionar o submit 
-   Route::post('/loginSubmit',[AuthController::class,'loginSubmit']);
-
+    //essa rota vai receber os dados quando o usuario acionar o submit 
+    Route::post('/loginSubmit', [AuthController::class, 'loginSubmit']);
 });
 
 
@@ -26,35 +25,31 @@ Route::middleware([CheckIsNotLogged::class])->group(function(){
 // detro dela então todas vez quen usuario tentar entrar em qualquer dessas rotas do grupo
 //vai ser testado se exsite uma sessão que permita esse acesso  
 
-Route::middleware([CheckIsLogged::class])->group(function(){
+Route::middleware([CheckIsLogged::class])->group(function () {
 
-            //rota da home page 
-            Route::get('/',[MainController::class,'index'])->name('home');
+    //rota da home page 
+    Route::get('/', [MainController::class, 'index'])->name('home');
 
-            //rota de formulario de edição
-            Route::get('/editNote/{id}',[MainController::class,'editNote'])->name('editNote');
-           
-            //rota para salvar as alterações feitas na edição 
-            Route::post('/editNoteSubmit/{id}',[MainController::class,'editNoteSubmit'])->name('editNoteSubmit');
+    //rota de formulario de edição
+    Route::get('/editNote/{id}', [MainController::class, 'editNote'])->name('editNote');
 
-            //rota que pergunta se o usuario deseja deletar 
-            Route::get('/deleteNote/{id}',[MainController::class,'deleteNote'])->name('deleteNote');
+    //rota para salvar as alterações feitas na edição 
+    Route::post('/editNoteSubmit/{id}', [MainController::class, 'editNoteSubmit'])->name('editNoteSubmit');
 
-            //rota que pergunta se o usuario deseja deletar 
-            Route::get('/deleteConfirm/{id}',[MainController::class,'deleteConfirm'])->name('deleteConfirm');
+    //rota que pergunta se o usuario deseja deletar 
+    Route::get('/deleteNote/{id}', [MainController::class, 'deleteNote'])->name('deleteNote');
+
+    //rota que pergunta se o usuario deseja deletar 
+    Route::get('/deleteConfirm/{id}', [MainController::class, 'deleteConfirm'])->name('deleteConfirm');
 
 
-            
-            //rota da nova nota
-            Route::get('/newNote',[MainController::class,'newNote'])->name('new');
 
-            //rota para submeter uma nova nota
-            Route::post('/newNoteSubmit',[MainController::class,'newNoteSubmit'])->name('newNoteSubmit'); 
+    //rota da nova nota
+    Route::get('/newNote', [MainController::class, 'newNote'])->name('new');
 
-            //logout
-            Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    //rota para submeter uma nova nota
+    Route::post('/newNoteSubmit', [MainController::class, 'newNoteSubmit'])->name('newNoteSubmit');
 
+    //logout
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
-
-
