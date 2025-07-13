@@ -1,0 +1,3 @@
+Na pasta services eu criei a classe Operations que vai conter metodos que eu vou precisar 
+usar em varios pontos do codigo,então se eu precisar decripatrr os id chamos namespace dela
+e uso o decriptId.    
