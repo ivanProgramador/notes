@@ -1,0 +1,2 @@
+sempre que possivel tente mostrar ao clen6te a ultima data de alteração de um registro
+isso melhora a experiencia dele  
