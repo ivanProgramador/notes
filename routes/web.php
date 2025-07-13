@@ -40,6 +40,9 @@ Route::middleware([CheckIsLogged::class])->group(function(){
             //rota da nova nota
             Route::get('/newNote',[MainController::class,'newNote'])->name('new');
 
+            //rota para submeter uma nova nota
+            Route::post('/newNoteSubmit',[MainController::class,'newNoteSubmit'])->name('newNoteSubmit'); 
+
             //logout
             Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
