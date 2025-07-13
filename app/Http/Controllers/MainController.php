@@ -29,11 +29,73 @@ class MainController extends Controller
           //mostrando a pagina de edição 
 
         return view('edit_note',['note' => $note ]);
-
-
-
-
      }
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+     public function editNoteSubmit(Request $request){
+        
+      //validando a requisição
+
+       $request -> validate(
+
+      
+        [
+          'text_title' => 'required|min:3|max:200',
+          'text_note' => 'required|min:3|max:3000'
+          
+        ],
+      
+        [
+          'text_title.required'=>'Você esqueceu de colocar um titulo na sua nota ',
+          'text_title.min'=>'o titulo deve ter pelo menos 3 caracteres',
+          'text_title.max'=>'o titulo deve ter no maximo 200 caracteres',          
+          'text_note.required'=>'Você esqueceu de colocar um texto na nota',
+          'text_note.min'=>'O texto deve ter pelo menos 3 caracteres',
+          'text_note.max'=>'O texto pode ter no maximo 3000 caracteres'
+        ]
+        
+      );
+
+      //verificando se existe um id na requisição 
+       if($request->note_id == null){
+           return redirect()->to('home');
+       }
+
+      //decriptando o id 
+      $id = Operations::decryptId($request->note_id);
+
+      //carregando a nota 
+
+      $note = Note::find($id);
+
+      //atualizando a nota 
+
+      $note->title = $request->text_title;
+      $note->text = $request->text_note;
+      $note->save();
+
+
+      //redirecionando o usuario 
+
+      return redirect()->route('home');
+
+
+
+   }
+
+
+
+
+
 
      
 
