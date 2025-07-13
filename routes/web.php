@@ -37,8 +37,13 @@ Route::middleware([CheckIsLogged::class])->group(function(){
             //rota para salvar as alterações feitas na edição 
             Route::post('/editNoteSubmit/{id}',[MainController::class,'editNoteSubmit'])->name('editNoteSubmit');
 
-            //rota de apagar a nota 
+            //rota que pergunta se o usuario deseja deletar 
             Route::get('/deleteNote/{id}',[MainController::class,'deleteNote'])->name('deleteNote');
+
+            //rota que pergunta se o usuario deseja deletar 
+            Route::get('/deleteConfirm/{id}',[MainController::class,'deleteConfirm'])->name('deleteConfirm');
+
+
             
             //rota da nova nota
             Route::get('/newNote',[MainController::class,'newNote'])->name('new');

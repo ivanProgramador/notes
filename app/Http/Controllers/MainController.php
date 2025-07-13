@@ -102,8 +102,34 @@ class MainController extends Controller
     public function deleteNote($id)
     {
          $id = Operations::decryptId($id);
+
+
+         //carregando a nota 
+
+         $note = Note::find($id);
+
+         //mostrando a pagina de confirmação 
+         return view('delete_note',['note'=>$note]);
         
     }
+
+    public function deleteConfirm($id){
+
+      //checando o id 
+      
+      // carrregando a nota 
+
+      //deletando 
+
+      //redirecionando 
+
+    }
+
+
+
+
+
+
 
   //rota para o formulario da nova nota 
    public function newNote(){
