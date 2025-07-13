@@ -32,9 +32,12 @@ Route::middleware([CheckIsLogged::class])->group(function(){
             Route::get('/',[MainController::class,'index'])->name('home');
 
             //rota de formulario de edição
-            Route::get('/editNote/{id}',[MainController::class,'edit'])->name('edit');
+            Route::get('/editNote/{id}',[MainController::class,'editNote'])->name('editNote');
+           
+            //rota para salvar as alterações feitas na edição 
+            Route::post('/editNoteSubmit/{id}',[MainController::class,'editNoteSubmit'])->name('editNoteSubmit');
 
-             //rota de apagar a nota 
+            //rota de apagar a nota 
             Route::get('/deleteNote/{id}',[MainController::class,'deleteNote'])->name('deleteNote');
             
             //rota da nova nota

@@ -22,10 +22,20 @@ class MainController extends Controller
    public function editNote($id)
      {
           $id = Operations::decryptId($id);
+
+          //carrregando a nota 
+           $note = Note::find($id);
+
+          //mostrando a pagina de edição 
+
+        return view('edit_note',['note' => $note ]);
+
+
+
+
      }
 
-
-
+     
 
     public function deleteNote($id)
     {
@@ -76,7 +86,7 @@ class MainController extends Controller
      $note = new Note();
      $note->user_id = $id;
      $note->title = $request->text_title;
-     $note->title = $request->text_note;
+     $note->text = $request->text_note;
      $note->save();
 
      //redirecionando a apgina principal 
